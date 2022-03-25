@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-
 int main(int argc, char *argv[]) {
 
     /* para recuperar el texto de entrada */
@@ -13,36 +12,35 @@ int main(int argc, char *argv[]) {
     char word1[15];
     char word2[15];
 
-    fpointer = fopen(argv[1] , "r");
-    if(fpointer == NULL) {
-        perror("Error opening file");
-        return(-1);
-    }
-    else {
+    fpointer = fopen(argv[1], "r");
+    if (fpointer == NULL) {
+        perror("Opening file");
+        return (-1);
+    } else {
         fgets(text, 200, fpointer);
     }
     fclose(fpointer);
 
     /* ya tenemos el texto de entrada */
-    
-    if (strcmp(argv[2],option1) == 0) {
-        printf("encode\n");//, option);
+
+    {if (strcmp(argv[2],option1) == 0) {
+        printf("encode\n");
     }
-    if (strcmp(argv[2],option2) == 0) {
-        printf("decode"); //option);
+    else if (strcmp(argv[2],option2) == 0) {
+        printf("decode\n");
     }
     else {
-        perror("Error proceso no definido");
-    }
+        perror("Proceso no definido");
+    }}
 
 
     /* ya tenemos el texto de entrada */
-
+    
 
     return 0;
 }
 
-
+//printf("%s", text);
 
 //int main(int argc, char *argv[]) {
 
@@ -63,3 +61,4 @@ int main(int argc, char *argv[]) {
 //    return 0;
 //USAR DE ESTA PARTE DEL CÓDIGO LO QUE HACE QUE LEA EL ARCHIVO MENSAJE.TXT Y GENERE OTRO ARCHIVO TEXT CON LAS ESPECIFICACIONES DADAS
 //}
+
