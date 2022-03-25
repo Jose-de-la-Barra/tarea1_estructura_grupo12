@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
 
@@ -7,7 +8,8 @@ int main(int argc, char *argv[]) {
     FILE *fpointer;
 
     char text[200];
-    char option[15];
+    char option1[] = {"encode"};
+    char option2[] = {"decode"};
     char word1[15];
     char word2[15];
 
@@ -20,13 +22,14 @@ int main(int argc, char *argv[]) {
         fgets(text, 200, fpointer);
     }
     fclose(fpointer);
+
     /* ya tenemos el texto de entrada */
-    option = argv[2];
-    if (option == "encode") {
-        printf("%s", option);
+    
+    if (strcmp(argv[2],option1) == 0) {
+        printf("encode\n");//, option);
     }
-    if (option == "decode") {
-        printf("%s", option);
+    if (strcmp(argv[2],option2) == 0) {
+        printf("decode"); //option);
     }
     else {
         perror("Error proceso no definido");
