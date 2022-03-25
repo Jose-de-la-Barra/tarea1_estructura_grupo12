@@ -14,8 +14,9 @@ int main(int argc, char *argv[]) {
     char text[200];
     char option1[] = {"encode"};
     char option2[] = {"decode"};
-    char word1[15];
-    char word2[15];
+    char *word1[15] = {argv[3]};
+    char *word2[15] = {argv[4]};
+
 
     fpointer = fopen(argv[1], "r");
     if (fpointer == NULL) {
@@ -37,8 +38,10 @@ int main(int argc, char *argv[]) {
     else {
         perror("Proceso no definido");
     }
+    printf("%s\n", text);
+    printf("%s\n", *word1);
+    printf("%s\n", *word2);
 
-    printf("%s", text);
     return 0;
 }
 
@@ -68,4 +71,7 @@ void decode(char text[200], char word1[15], char word2[15]) {
 //    return 0;
 //USAR DE ESTA PARTE DEL CÓDIGO LO QUE HACE QUE LEA EL ARCHIVO MENSAJE.TXT Y GENERE OTRO ARCHIVO TEXT CON LAS ESPECIFICACIONES DADAS
 //}
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch_jose
