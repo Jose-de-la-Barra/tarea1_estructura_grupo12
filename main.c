@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     /* ya tenemos el texto de entrada */
 
     if (strcmp(argv[2],option1) == 0) {
-        printf("encode\n");
+        encode(text, *word1, *word2);
     }
     else if (strcmp(argv[2],option2) == 0) {
         printf("decode\n");
@@ -38,22 +38,36 @@ int main(int argc, char *argv[]) {
     else {
         perror("Proceso no definido");
     }
-    printf("%s\n", text);
-    printf("%s\n", *word1);
-    printf("%s\n", *word2);
-
     return 0;
 }
 
 
 void encode(char text[200], char word1[15], char word2[15]) {  // procedimiento para cifrar texto //
+
+    char *pointer; //puntero que apuntará a cada uno de los caracteres del texto principal
+    char *p1;
+    char *p2;
+
+    int large = strlen(text);
+    int large_w1 = strlen(word1);
+
+    pointer = text;  // primera letra de la cadena
+    p1 = word1;
+    p2 = word2;
+
+    while (*pointer != '\0') {
+        while (*p1 != '\0') {
+            // *p1 recorre word1 letra por letra mientras que *pointer recorre letra por letra el texto
+            p1++;
+            p2++;
+        }
+        pointer++;
+    }
 }
 
 void decode(char text[200], char word1[15], char word2[15]) {
 
 }
-
-
 
 //int main(int argc, char *argv[]) {
 
