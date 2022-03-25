@@ -71,7 +71,3 @@ void decode(char text[200], char word1[15], char word2[15]) {
 //    return 0;
 //USAR DE ESTA PARTE DEL CÓDIGO LO QUE HACE QUE LEA EL ARCHIVO MENSAJE.TXT Y GENERE OTRO ARCHIVO TEXT CON LAS ESPECIFICACIONES DADAS
 //}
-<<<<<<< HEAD
-
-=======
->>>>>>> branch_jose
