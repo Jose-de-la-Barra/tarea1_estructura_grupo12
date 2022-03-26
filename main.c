@@ -6,6 +6,7 @@ void decode(char text[200], char word1[15], char word2[15]); /* recibe texto de 
                                                 * archivo en donde se va a escribir la salida (por hacer)*/
 void encode(char text[200], char word1[15], char word2[15]);
 
+void concatenate(char *cadena, char c);
 
 
 int main(int argc, char *argv[]) {
@@ -16,7 +17,6 @@ int main(int argc, char *argv[]) {
     char option2[] = {"decode"};
     char *word1[15] = {argv[3]};
     char *word2[15] = {argv[4]};
-
 
     fpointer = fopen(argv[1], "r");
     if (fpointer == NULL) {
@@ -47,27 +47,60 @@ void encode(char text[200], char word1[15], char word2[15]) {  // procedimiento 
     char *pointer; //puntero que apuntará a cada uno de los caracteres del texto principal
     char *p1;
     char *p2;
+    char cadena[200] = "";
 
-    int large = strlen(text);
     int large_w1 = strlen(word1);
 
     pointer = text;  // primera letra de la cadena
-    p1 = word1;
-    p2 = word2;
 
     while (*pointer != '\0') {
+        p1 = word1;
+        p2 = word2;
+        int cont = 0;
+
         while (*p1 != '\0') {
             // *p1 recorre word1 letra por letra mientras que *pointer recorre letra por letra el texto
+            if (*pointer != *p1 && *pointer != *p2) {
+                cont++;
+            }
+            else if (*pointer == *p1 && *pointer != *p2 || *pointer != *p1 && *pointer == *p2) {
+
+                if (*pointer == *p1 && *pointer != *p2) {
+                    concatenate(cadena, *p2);
+                }
+                else if (*pointer != *p1 && *pointer == *p2) {
+                    concatenate(cadena, *p1);
+                }
+            }
             p1++;
             p2++;
+
+            if (cont == large_w1) {
+                concatenate(cadena, *pointer);
+            }
+
         }
+
+
         pointer++;
     }
+    printf("%s", cadena);
 }
 
 void decode(char text[200], char word1[15], char word2[15]) {
 
 }
+
+
+void concatenate(char *cadena, char c)
+{
+    char cadenaTemporal[2];
+    cadenaTemporal[0] = c;
+    cadenaTemporal[1] = '\0';
+    strcat(cadena, cadenaTemporal);
+}
+
+
 
 //int main(int argc, char *argv[]) {
 
@@ -85,3 +118,4 @@ void decode(char text[200], char word1[15], char word2[15]) {
 //    return 0;
 //USAR DE ESTA PARTE DEL CÓDIGO LO QUE HACE QUE LEA EL ARCHIVO MENSAJE.TXT Y GENERE OTRO ARCHIVO TEXT CON LAS ESPECIFICACIONES DADAS
 //}
+
