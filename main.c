@@ -17,6 +17,14 @@ int main(int argc, char *argv[]) {
     char *word1[15] = {argv[3]};
     char *word2[15] = {argv[4]};
 
+    // verificaciones antes de comenzar a llamar a los procedimientos //
+
+    if (strlen(*word1) != strlen(*word2)) {
+        perror("error: las palabras claves deben ser del mismo largo\n");
+        return 1;
+    }
+
+
     if (argc < 5 || argc > 5) {
         printf("error: Debes ingresar 5 argumentos\n");
         return 1;
@@ -70,24 +78,32 @@ void encode_decode(char text[200], char word1[15], char word2[15]) {  // procedi
 
         while (*p1 != '\0') {
 
-            if (bool_text == true) {  /* si la letra del texto de entrada está en mayúscula, la letra que
-                                               * agregamos al texto de salida también tiene que estar en mayúscula */
-                *p1 = toupper(*p1);
-                *p2 = toupper(*p2);
-            }
-
             // *p1 recorre word1 letra por letra mientras que *pointer recorre letra por letra el texto
-            if (*pointer != *p1 && *pointer != *p2) {
+            if (tolower(*pointer) != tolower(*p1) && tolower(*pointer) != tolower(*p2)) {
                 cont++;
             }
-            else if (*pointer == *p1 && *pointer != *p2 || *pointer != *p1 && *pointer == *p2) {
+            else {
 
-                if (*pointer == *p1 && *pointer != *p2) {
+                if (tolower(*pointer) == tolower(*p1) && tolower(*pointer) != tolower(*p2)) {
+                    if (bool_text == true) {  /* si la letra del texto de entrada está en mayúscula, la letra que
+                                               * agregamos al texto de salida también tiene que estar en mayúscula */
+                        concatenate(cadena, toupper(*p2));
+                    }
 
-                    concatenate(cadena, *p2);
+                    else {
+                        concatenate(cadena, *p2);
+                    }
+
                 }
-                else if (*pointer != *p1 && *pointer == *p2) {
-                    concatenate(cadena, *p1);
+                else if (tolower(*pointer) != tolower(*p1) && tolower(*pointer) == tolower(*p2)) {
+                    if (bool_text == true) {  /* si la letra del texto de entrada está en mayúscula, la letra que
+                                               * agregamos al texto de salida también tiene que estar en mayúscula */
+                        concatenate(cadena, toupper(*p1));
+                    }
+                    else {
+                        concatenate(cadena, *p1);
+                    }
+
                 }
             }
             *p1 = tolower(*p1);
