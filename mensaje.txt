@@ -1,1 +1,1 @@
-El nombre del archivo (mensaje.txt) es sólo un ejemplo, dado que puede llamarse de cualquier manera. A continuación un ejemplo de este archivo, y su versión codificada:
+HOLa a todos!

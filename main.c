@@ -77,6 +77,15 @@ void encode_decode(char text[200], char word1[15], char word2[15]) {  // procedi
         }
 
         while (*p1 != '\0') {
+            bool bool_p1 = false;
+            bool bool_p2 = false;
+
+            if(*p1 >= 'A' && *p1 <= 'Z') {
+                bool_p1 = true;
+            }
+            if(*p2 >= 'A' && *p2 <= 'Z') {
+                bool_p2 = true;
+            }
 
             // *p1 recorre word1 letra por letra mientras que *pointer recorre letra por letra el texto
             if (tolower(*pointer) != tolower(*p1) && tolower(*pointer) != tolower(*p2)) {
@@ -91,23 +100,31 @@ void encode_decode(char text[200], char word1[15], char word2[15]) {  // procedi
                     }
 
                     else {
-                        concatenate(cadena, *p2);
+                        if (bool_p2 == true) {
+                            concatenate(cadena, toupper(*p2));
+                        }
+                        else {
+                            concatenate(cadena, *p2);
+                        }
                     }
 
                 }
                 else if (tolower(*pointer) != tolower(*p1) && tolower(*pointer) == tolower(*p2)) {
-                    if (bool_text == true) {  /* si la letra del texto de entrada está en mayúscula, la letra que
-                                               * agregamos al texto de salida también tiene que estar en mayúscula */
+                    if (bool_text == true) {
                         concatenate(cadena, toupper(*p1));
                     }
                     else {
-                        concatenate(cadena, *p1);
+                        if (bool_p1 == true) {
+                            concatenate(cadena, toupper(*p1));
+                        }
+                        else {
+                            concatenate(cadena, *p1);
+                        }
                     }
 
                 }
             }
-            *p1 = tolower(*p1);
-            *p2 = tolower(*p2);
+
 
             p1++;
             p2++;
